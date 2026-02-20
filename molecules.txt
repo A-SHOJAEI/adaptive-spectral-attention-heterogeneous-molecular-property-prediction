@@ -1,0 +1,17 @@
+# Sample molecules for testing prediction script
+# One SMILES per line
+
+# Ethanol
+CCO
+
+# Acetic acid
+CC(=O)O
+
+# Benzene
+c1ccccc1
+
+# Aspirin
+CC(=O)Oc1ccccc1C(=O)O
+
+# Ibuprofen
+CC(C)Cc1ccc(cc1)C(C)C(=O)O

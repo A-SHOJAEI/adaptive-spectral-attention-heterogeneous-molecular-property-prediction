@@ -1,0 +1,58 @@
+================================================================================
+EVALUATION RESULTS
+================================================================================
+
+Metrics:
+----------------------------------------
+roc_auc                       : 0.5675
+avg_precision                 : 0.5733
+spectral_alignment_score      : 0.5263
+accuracy                      : 0.5263
+f1                            : 0.5196
+precision                     : 0.5298
+recall                        : 0.5280
+
+================================================================================
+Configuration:
+================================================================================
+
+DATA:
+----------------------------------------
+  dataset_name                : bace
+  data_dir                    : data/raw
+  batch_size                  : 32
+  num_workers                 : 4
+  train_split                 : 0.8
+  val_split                   : 0.1
+  test_split                  : 0.1
+  random_seed                 : 42
+
+MODEL:
+----------------------------------------
+  hidden_dim                  : 128
+  num_layers                  : 4
+  num_heads                   : 8
+  dropout                     : 0.2
+  spectral_heads              : 4
+  num_eigenvalues             : 20
+  use_adaptive_filter         : True
+  use_heterogeneous           : True
+  edge_types                  : 4
+  node_types                  : 1
+  pool_type                   : global_mean
+  use_residual                : True
+  num_node_features           : 9
+  num_tasks                   : 1
+
+TRAINING:
+----------------------------------------
+  epochs                      : 150
+  learning_rate               : 0.001
+  weight_decay                : 1e-05
+  optimizer                   : adam
+  scheduler                   : cosine
+  warmup_epochs               : 10
+  grad_clip                   : 1.0
+  early_stopping_patience     : 20
+  early_stopping_delta        : 0.0001
+  use_mixed_precision         : False

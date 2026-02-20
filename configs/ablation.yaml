@@ -1,0 +1,68 @@
+# Ablation study: Baseline without adaptive spectral attention
+
+data:
+  dataset_name: "bace"
+  data_dir: "data/raw"
+  batch_size: 32
+  num_workers: 4
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  random_seed: 42
+
+model:
+  hidden_dim: 128
+  num_layers: 4
+  num_heads: 8
+  dropout: 0.2
+  spectral_heads: 4
+  num_eigenvalues: 20
+  use_adaptive_filter: false  # DISABLED: No adaptive spectral filtering
+  use_heterogeneous: false    # DISABLED: Treat as homogeneous graph
+  edge_types: 1
+  node_types: 1
+  pool_type: "global_mean"
+  use_residual: true
+
+training:
+  epochs: 150
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  optimizer: "adam"
+  scheduler: "cosine"
+  warmup_epochs: 10
+  grad_clip: 1.0
+  early_stopping_patience: 20
+  early_stopping_delta: 0.0001
+  use_mixed_precision: true
+
+curriculum:
+  use_curriculum: false  # DISABLED: No curriculum learning
+
+spectral:
+  use_spectral_attention: false  # DISABLED: Standard attention only
+  spectral_filter_type: "fixed"
+  laplacian_type: "normalized"
+  frequency_bands: 5
+
+loss:
+  use_focal_loss: false
+  focal_alpha: 0.25
+  focal_gamma: 2.0
+  use_class_weights: true
+
+paths:
+  checkpoint_dir: "checkpoints"
+  results_dir: "results"
+  log_dir: "logs"
+  model_save_name: "ablation_model.pt"
+
+logging:
+  use_mlflow: true
+  experiment_name: "ablation_baseline"
+  log_interval: 10
+  use_tensorboard: false
+
+reproducibility:
+  seed: 42
+  deterministic: true
